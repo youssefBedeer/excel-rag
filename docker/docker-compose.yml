@@ -1,0 +1,22 @@
+name: excelrag
+services:
+  # PostgresSQL (pgvector)
+  pgvector:
+    image: pgvector/pgvector:pg16
+    container_name: pgvector 
+    ports:
+      - "5433:5432"
+    volumes:
+      - 'pgvector:/var/lib/postgressql/data'
+    env_file:
+      - ./env/.env.postgres
+    networks:
+      - backend
+    restart: always
+
+
+networks:
+  backend:
+
+volumes:
+  pgvector:
